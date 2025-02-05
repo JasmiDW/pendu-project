@@ -27,15 +27,20 @@ const lettersLang = lettersArray.map((letter, index) => {
   return (<span className="span-letters" key={index}>{letter}</span>)
 })
 
+const alphabet = "abcdefghijklmnopqrstuvwxyz"
+const alphArray = alphabet.split('')
+const keyboard= alphArray.map(item => {
+  return (
+    <button key={item}>{item}</button>
+  )
+})
 
   return (
     <main>
       <Header />
       <section className='status-game'>
-        <div>
           <h2>You win !</h2>
           <p>Well done</p>
-        </div>
       </section>
       <section className="language-chips">
       {languageElements}
@@ -43,7 +48,9 @@ const lettersLang = lettersArray.map((letter, index) => {
       <section className="word">
         {lettersLang}
       </section>
-        
+      <section className="keyboard">
+        {keyboard}
+      </section>
 
     </main>
   )
