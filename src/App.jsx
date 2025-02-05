@@ -21,6 +21,8 @@ function App() {
 })
 
 const [currentWord, setCurrentWord] = useState("react")
+const [guestLetters, setGuestLetters] = useState([])
+
 const lettersArray = currentWord.split('')
 
 const lettersLang = lettersArray.map((letter, index) => {
@@ -31,9 +33,16 @@ const alphabet = "abcdefghijklmnopqrstuvwxyz"
 const alphArray = alphabet.split('')
 const keyboard= alphArray.map(item => {
   return (
-    <button key={item}>{item}</button>
+    <button onClick={() => handleLetter(item)} key={item}>{item}</button>
   )
 })
+
+function handleLetter(letter){
+  setGuestLetters(prevLetter => 
+    prevLetter.includes(letter) ? 
+      prevLetter : 
+      [...prevLetter, letter])
+}
 
   return (
     <main>
