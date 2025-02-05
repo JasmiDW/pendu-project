@@ -19,12 +19,41 @@ header{
     font-weight: 100;
     font-size: 1.25rem;
   }
-  
+
   p{
     font-size: 0.875rem;
     max-width: 350px;
   }
 
 }
+
+.status-game{
+  text-align: center;
+  background-color: #62466B;
+  margin-top: 20px;
+  padding: 10px;
+  h2{
+    margin: 0;
+    font-weight: 100;
+  }
+  p{
+    margin: 0;
+  }
+}
+
+section.language-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  justify-content: center;
+  max-width: 350px;
+  margin-top: 25px;
+
+  .span-languages{
+    padding: 5px;
+    border-radius: 3px;
+  }
+}
+
 
 
