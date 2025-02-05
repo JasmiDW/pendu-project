@@ -55,5 +55,19 @@ section.language-chips {
   }
 }
 
+.word {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+  .span-letters{
+    background-color: #45364B;
+    padding: 10px;
+    font-size: 40px;
+    border-bottom: 2px solid #B5C2B7 ;
+    margin: 5px;
+    text-transform: uppercase;
+  }
+}
+
 
 
