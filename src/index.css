@@ -4,6 +4,27 @@
 }
 
 body {
+  margin: 0;
   background-color: #2D2327;
   color: #B5C2B7;
+  padding: 20px;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
 }
+header{
+  text-align: center;
+
+  h1{
+    font-weight: 100;
+    font-size: 1.25rem;
+  }
+  
+  p{
+    font-size: 0.875rem;
+    max-width: 350px;
+  }
+
+}
+
+
