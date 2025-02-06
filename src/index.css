@@ -90,6 +90,15 @@ section.language-chips {
     gap: 8px;
 
   }
+
+  .bg-green{
+    background-color: aquamarine;
+  
+  }
+
+  .bg-red{
+    background-color:#D8315B;
+    color: #B5C2B7;
   
 }
 

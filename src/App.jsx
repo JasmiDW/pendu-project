@@ -21,7 +21,7 @@ function App() {
 })
 
 const [currentWord, setCurrentWord] = useState("react")
-const [guestLetters, setGuestLetters] = useState([])
+const [guessedLetters, setGuessedLetters] = useState([])
 
 const lettersArray = currentWord.split('')
 
@@ -32,16 +32,21 @@ const lettersLang = lettersArray.map((letter, index) => {
 const alphabet = "abcdefghijklmnopqrstuvwxyz"
 const alphArray = alphabet.split('')
 const keyboard= alphArray.map(item => {
+  
+  const isGuessed = guessedLetters.includes(item)
+  const isCorrect = isGuessed && currentWord.includes(item)
+  const isWrong = isGuessed && !currentWord.includes(item)
+
   return (
-    <button onClick={() => handleLetter(item)} key={item}>{item}</button>
+    <button className={`
+      ${isCorrect ? "bg-green" : ""}
+      ${isWrong ? "bg-red" : ""}
+      ${!isGuessed ? "" : ""}`} onClick={() => handleLetter(item)} key={item}>{item}</button>
   )
 })
 
 function handleLetter(letter){
-  setGuestLetters(prevLetter => 
-    prevLetter.includes(letter) ? 
-      prevLetter : 
-      [...prevLetter, letter])
+  setGuessedLetters(prevLetter => prevLetter.includes(letter) ? prevLetter : [...prevLetter, letter])
 }
 
   return (
