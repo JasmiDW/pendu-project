@@ -1,11 +1,26 @@
 import './App.css'
 import Header from './components/Header'
 import { languages } from './languages'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 function App() {
   
-  const [currentWord, setCurrentWord] = useState("react")
+  const [currentWord, setCurrentWord] = useState('')
+  useEffect(function (){
+    fetch("https://random-word-api.herokuapp.com/word?lang=fr")
+      .then(res => res.json())
+      .then(data => {
+          const wordWhitoutAccent = removeAccents(data[0]);
+          setCurrentWord(wordWhitoutAccent)
+      } )
+      
+  }, [])
+
+  const removeAccents = (str) => {
+    return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  };
+  
+
   const [guessedLetters, setGuessedLetters] = useState([])
 
   const wrongGuessCount = guessedLetters.filter(letter => !currentWord.includes(letter)).length
@@ -15,6 +30,8 @@ function App() {
   function handleLetter(letter){
     setGuessedLetters(prevLetter => prevLetter.includes(letter) ? prevLetter : [...prevLetter, letter])
   }
+
+  
 
   const languageElements = languages.map((lang, index )=> {
     const isLost = index < wrongGuessCount
@@ -60,10 +77,23 @@ function App() {
     return (
       <main>
         <Header />
-        <section className={`status-game ${isGameLost ? "game-over" : ""} ${isGameWon? "game-won" : ""}`}>
-          {isGameLost && <> <h2>Game over !</h2> <p>Essaies encore</p> </> }
-          {isGameWon && <> <h2>Gagné !</h2> <p>Bien joué</p> </> }
-        </section>
+          <section className={`status-game ${isGameLost ? "game-over" : ""} ${isGameWon? "game-won" : ""}`}>
+            {isGameOver ? (
+              isGameWon ? (
+                  <>
+                      <h2>Gagné !</h2>
+                      <p>Bien joué! 🎉</p>
+                  </>
+              ) : (
+                  <>
+                      <h2>Game over!</h2>
+                      <p>La réponse était : {currentWord} Recommence 😭</p>
+                  </>
+              )
+            ) : (
+                  null
+            )}
+          </section>
         <section className="language-chips">
         {languageElements}
         </section>
