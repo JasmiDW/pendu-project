@@ -58,20 +58,25 @@ section.language-chips {
     padding: 5px;
     border-radius: 3px;
   }
+
 }
 
 .word {
   display: flex;
   justify-content: center;
   margin-top: 30px;
+  min-height: 90px;
   .span-letters{
     background-color: #45364B;
+    color: #B5C2B7;
     padding: 10px;
     font-size: 40px;
     border-bottom: 2px solid #B5C2B7 ;
     margin: 5px;
     text-transform: uppercase;
+    min-width: 40px;
   }
+
 }
 
 .keyboard{
@@ -80,6 +85,7 @@ section.language-chips {
   justify-content: center;
   margin-top: 30px;
   max-width: 350px;
+  
 
   button{
     background-color: #B5C2B7;
@@ -100,6 +106,7 @@ section.language-chips {
     background-color:#D8315B;
     color: #B5C2B7;
   
+}
 }
 
 
