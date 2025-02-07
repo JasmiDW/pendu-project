@@ -45,6 +45,15 @@ header{
   }
 }
 
+section.status-game.game-over{
+  background-color: #D8315B;
+}
+
+section.status-game.game-won{
+  background-color: aquamarine;
+  color:#2D2327
+}
+
 section.language-chips {
   display: flex;
   flex-wrap: wrap;
@@ -52,14 +61,38 @@ section.language-chips {
   justify-content: center;
   max-width: 350px;
   margin-top: 25px;
-  
 
-  .span-languages{
+  .span-languages {
+    position: relative; 
     padding: 5px;
     border-radius: 3px;
   }
-
+  
+  .span-languages.lost::before {
+    content: "💀";
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    font-size: 0.85rem;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5); 
+    z-index: 1; 
+  }
+  
+  .span-languages.lost {
+    position: relative;
+    z-index: 2; 
+  }
 }
+
+
+
+
+
 
 .word {
   display: flex;
@@ -107,6 +140,20 @@ section.language-chips {
     color: #B5C2B7;
   
 }
+}
+
+button.new-game {
+  margin-top: 30px;
+  background-color: #8C93A8;
+  border-radius: 4px;
+  width: 225px;
+  height: 40px;
+  padding: 6px 12px;
+  display: block;
+  margin-inline: auto;
+  cursor: pointer;
+  font-size: 18px;
+  color: #000000;
 }
 
 

@@ -9,7 +9,6 @@ function App() {
   const [guessedLetters, setGuessedLetters] = useState([])
 
   const wrongGuessCount = guessedLetters.filter(letter => !currentWord.includes(letter)).length
-  console.log(wrongGuessCount)
 
   const alphabet = "abcdefghijklmnopqrstuvwxyz"
   
@@ -17,14 +16,15 @@ function App() {
     setGuessedLetters(prevLetter => prevLetter.includes(letter) ? prevLetter : [...prevLetter, letter])
   }
 
-  const languageElements = languages.map(lang => {
+  const languageElements = languages.map((lang, index )=> {
+    const isLost = index < wrongGuessCount
     const styles = {
         backgroundColor: lang.backgroundColor,
         color: lang.color
     }
     return (
         <span 
-            className="span-languages" 
+            className={`span-languages ${isLost ? "lost" : ""}` }
             style={styles}
             key={lang.name}
         >
@@ -32,8 +32,12 @@ function App() {
         </span>
     )
   })
-
+  
   const lettersArray = currentWord.split('')
+  const isGameLost = wrongGuessCount == languageElements.length
+  const isGameWon = lettersArray.every(currentLetter => guessedLetters.includes(currentLetter))
+  const isGameOver = isGameWon || isGameLost
+
   const lettersLang = lettersArray.map((letter, index) => {
     return (<span  className="span-letters" key={index}>{guessedLetters.includes(letter) ? letter : ""}</span>)
   })
@@ -56,9 +60,9 @@ function App() {
     return (
       <main>
         <Header />
-        <section className='status-game'>
-            <h2>You win !</h2>
-            <p>Well done</p>
+        <section className={`status-game ${isGameLost ? "game-over" : ""} ${isGameWon? "game-won" : ""}`}>
+          {isGameLost && <> <h2>Game over !</h2> <p>Essaies encore</p> </> }
+          {isGameWon && <> <h2>Gagné !</h2> <p>Bien joué</p> </> }
         </section>
         <section className="language-chips">
         {languageElements}
@@ -69,6 +73,7 @@ function App() {
         <section className="keyboard">
           {keyboard}
         </section>
+        {isGameOver && <button className="new-game">New Game</button> }
 
       </main>
     )
